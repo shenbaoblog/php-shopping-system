@@ -31,12 +31,15 @@
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // データを取得
-    // ?には、data[]にて、データをセットする。
+    // ？には、data[]にて、データをセットする。
     $sql = 'SELECT name FROM mst_staff WHERE code=?';
+    // prepare：SQL文をセットして実行準備を行う。SQL文だけ作っておいて、後から当てはめる。
     $stmt = $dbh->prepare($sql);
+    // ？に値を当てはめる。
     $data[] = $staff_code;
+    // クエリの実行
     $stmt->execute($data);
-
+    // 結果を配列で取得
     $rec = $stmt->fetch(PDO::FETCH_ASSOC);
     $staff_name = $rec['name'];
 
