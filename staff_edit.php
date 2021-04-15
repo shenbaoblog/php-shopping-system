@@ -13,12 +13,25 @@
   try {
     $staff_code = $_POST['staffcode'];
 
-    $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
+    $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8'; // DSN: Data Source Name
     $user = 'root';
     $password = '';
+    // PDOクラスのインスタンス化（引数にデータベースの接続に必要な情報を記述）
+    // PDO:PHP Data Objects
+    // PDOは、どのデータベースを使っているかを隠蔽してくれる。どのデータベースを利用する場合でも同じ関数をつかうことができる。
+    // DBH:Data Base Handle
+    // Handle：コンピュータなどのソフトウエアの世界では一般的に「ハンドル」とは、あるオブジェクトや機能など(=この場合データベース)を操作するためのキーや、そのものを示す
+    // ハンドル：英語で、ある何かを操作することをHandle(ハンドル)、操作する人(者)のことをHandler(ハンドラー)といいますが、これが語源です。ご指摘のWebページで「車のハンドルと同じ」と言われているのはそのためと思います。つまり、あるものを操作するためのID、あるいは、あるものを示すためのIDのことがハンドルなので、この場合データベースを操作するために使われるもの＝データベースハンドル、ということになります。
     $dbh = new PDO($dsn, $user, $password);
+    // データベースに接続した後にオプションを指定
+    // 属性をセット
+    // ATTR_ERRMODE:エラーレポート
+    // ERRMODE_EXCEPTION:例外を投げる
+    // エラーが発生した時に、PDOExceptionの例外を投げてくれる。
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // データを取得
+    // ?には、data[]にて、データをセットする。
     $sql = 'SELECT name FROM mst_staff WHERE code=?';
     $stmt = $dbh->prepare($sql);
     $data[] = $staff_code;
