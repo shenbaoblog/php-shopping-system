@@ -40,9 +40,14 @@
     // クエリの実行
     $stmt->execute($data);
     // 結果を配列で取得
+    // FETCH_ASSOC：【配列のキー】カラム名のみ
+    // FETCH_BOTH：【配列のキー】カラム名&連番
+    // FETCH_KEY_PAIR：指定した2つのカラムを「キー／値」のペアの配列にする
+    // FETCH_COLUMN：指定した1つの絡むだけを1次元配列で取得
     $rec = $stmt->fetch(PDO::FETCH_ASSOC);
     $staff_name = $rec['name'];
 
+    // 接続を閉じる
     $dbh = null;
   } catch (Exception $e) {
     print 'ただいま障害により大変ご迷惑をお掛けしております。';
@@ -57,13 +62,14 @@
   <?php print $staff_code; ?>
   <br />
   <br />
-  <form action="staff_edit_chick/php" method="post">
+  <form action="staff_edit_check.php" method="post">
     <input type="hidden" name="code" value="<?php print $staff_code; ?>">
     スタッフ名<br />
     <input type="text" name="name" style="width:200px" value="<?php print $staff_name; ?>"><br />
     パスワードを入力してください。<br />
+    <input type="password" name="pass" style="width:100px"><br />
+    パスワードをもう一度入力してください。<br />
     <input type="password" name="pass2" style="width:100px"><br />
-    <br />
     <input type="button" onclick="history.back()" value="戻る">
     <input type="submit" value="OK">
   </form>
