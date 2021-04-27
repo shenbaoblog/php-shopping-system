@@ -29,6 +29,7 @@
       $data[] = $staff_code;
       $stmt->execute($data);
 
+      // DBへの接続切断
       $dbh=null;
 
     } catch (Exception $e) {

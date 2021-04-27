@@ -13,6 +13,7 @@
   try {
     $staff_code = $_POST['staffcode'];
 
+    // dsn：データベースの接続情報につけられる、識別用の名前のこと。データ元の名前。
     $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8'; // DSN: Data Source Name
     $user = 'root';
     $password = '';
@@ -42,12 +43,20 @@
     // ？に値を当てはめる。
     $data[] = $staff_code;
     // クエリの実行
+    // PDOStatementオブジェクトが結果を保持
     $stmt->execute($data);
+    // とした場合、$results = $stmt->execute();とした場合、resultsには、trueまたは、falseが格納されている。
+    // SQLの結果を出すかと言うと、fetchまたはfetchAllを使うと良い。
+    // $stmt->execute();
+    // while ($row = $stmt->fetch()) {
+    //   // 処理
+    // }
     // 結果を配列で取得
     // FETCH_ASSOC：【配列のキー】カラム名のみ
     // FETCH_BOTH：【配列のキー】カラム名&連番
     // FETCH_KEY_PAIR：指定した2つのカラムを「キー／値」のペアの配列にする
     // FETCH_COLUMN：指定した1つの絡むだけを1次元配列で取得
+    // $recには、何が格納されている？
     $rec = $stmt->fetch(PDO::FETCH_ASSOC);
     $staff_name = $rec['name'];
 
