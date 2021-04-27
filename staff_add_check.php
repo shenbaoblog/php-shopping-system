@@ -47,7 +47,7 @@
   // 【注意】ハッシュかと暗号化は異なるので注意。ハッシュ関数は不可逆な一方向関数を含むため、ハッシュ値から原文を再現することは（基本的に）不可能。一方、暗号化されたものは復号化できる。
   // ハッシュ値は、元のデータが1bitでも異なると大きく変化するため、特にテキストやファイルが改ざんされていないかをチェックするのに適している。
   if( $staff_name=='' || $staff_pass='' || $staff_pass2='' ) {
-    print '<form>';
+  print '<form>';
     print '<input type="button" onclick="history.back()" value="戻る">';
     print '</form>';
   } else {
