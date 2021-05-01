@@ -31,7 +31,7 @@
     }
     $staff_code = $_POST['staffcode'];
     if (isset($_POST['staffcode']) == false) {
-      header('Location: staff_ng.php?staffcode=' . $staff_code);
+      header('Location: staff_ng.php');
       exit();
     }
     header('Location: staff_delete.php?staffcode=' . $staff_code);
