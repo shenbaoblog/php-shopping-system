@@ -11,10 +11,16 @@
 <body>
   <?php
   try {
-    $staff_code = $_POST['staffcode'];
+    $staff_code = $_GET['staffcode'];
 
-    // dsn：データベースの接続情報につけられる、識別用の名前のこと。データ元の名前。
-    $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8'; // DSN: Data Source Name
+    // $dsn（date source name）：アプリケーションが ODBCデータソースへの接続を要求するために使う識別用の名前。
+    // ODBC(Open Database Connectivity)：マイクロソフトさんが生み出した仕組みで、データベースとプログラムの間に入って仲立ちをしてくれる部品（に関する取り決め）
+    // 実際のデータベースには、いろいろな種類があります。Oracle、MySQL、SQLServer等です。
+    // これらのデータベースは、それぞれ個性があります。
+    // 例えばデータベースへ接続する方法も、データベースの種類によって変わってきます。
+    // プログラムをODBC経由でデータベースに接続するようにすると、データベースごとの個性を（あまり）気にしなくて良くなります。
+    // それぞれの個性は通訳であるODBCさんが（ある程度）吸収してくれるからです。
+    $dsn = 'mysql:dbname=shop;host=localhost;charset=mb4'; // DSN: Data Source Name
     $user = 'root';
     $password = '';
     // PDOクラスのインスタンス化（引数にデータベースの接続に必要な情報を記述）
@@ -45,7 +51,7 @@
     // クエリの実行
     // PDOStatementオブジェクトが結果を保持
     $stmt->execute($data);
-    // とした場合、$results = $stmt->execute();とした場合、resultsには、trueまたは、falseが格納されている。
+    // $results = $stmt->execute();とした場合、resultsには、trueまたは、falseが格納されている。
     // SQLの結果を出すかと言うと、fetchまたはfetchAllを使うと良い。
     // $stmt->execute();
     // while ($row = $stmt->fetch()) {

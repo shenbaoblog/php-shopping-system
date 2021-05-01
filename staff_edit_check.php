@@ -15,6 +15,12 @@
   $staff_pass = $_POST['pass'];
   $staff_pass2 = $_POST['pass2'];
 
+  // HTMLの特殊文字：'、"、&、<、>などHTMLにおいて特殊な役割を持つ文字。
+  // HTMLエンティティ：'、"、&、<、>をそのまま文字として画面に出力するように用意された文字列。
+  // htmlspecialchars(変換対象,変換パターン,文字コード)：特殊文字(text/plain)をHTMLエンティティ(text/html)に変換。
+  // htmlspecialchars_decode()：HTMLエンティティを特殊文字に変換。
+  // ENT_QUOTES：PHPが定数として持っているint型の値。ENT_QUOTESを指定すると、特殊文字列のうちシングルクォーテーションとダブルクォーテーションも変換対象に含めるようになる。
+  // 文字コード：文字を変換するときに使うエンコーディングを定義(text/html; UTF-8に変換)
   $staff_name = htmlspecialchars($staff_name, ENT_QUOTES, 'UTF-8');
   $staff_pass = htmlspecialchars($staff_pass, ENT_QUOTES, 'UTF-8');
   $staff_pass2 = htmlspecialchars($staff_pass2, ENT_QUOTES, 'UTF-8');
@@ -44,6 +50,7 @@
     print '<input type="button" onclick="history.back()" value="戻る">';
     print '</form>';
   } else {
+    // mb5：文字列のmb5ハッシュ値を取得する
     $staff_pass=md5($staff_pass);
     print '<form method="post" action="staff_edit_done.php">';
     print '<input type="hidden" name="code" value="'.$staff_code.'">';

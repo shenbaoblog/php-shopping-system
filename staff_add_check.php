@@ -16,6 +16,9 @@
   $staff_pass2 = $_POST['pass2'];
 
   // セキュリティ対策
+  // htmlspecialchars：特殊文字(text/plain)をHTMLエンティティ(text/html)に変換。
+  // 第三引数(UTF-8)：これを指定することで、text/htmlのUTF-8に変換
+  // 参照：https://qiita.com/mpyw/items/19e6fed835ccdbcb0d6d
   $staff_name = htmlspecialchars($staff_name, ENT_QUOTES, 'UTF-8');
   $staff_pass = htmlspecialchars($staff_pass, ENT_QUOTES, 'UTF-8');
   $staff_pass2 = htmlspecialchars($staff_pass2, ENT_QUOTES, 'UTF-8');
